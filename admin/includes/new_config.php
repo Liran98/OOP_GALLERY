@@ -10,6 +10,5 @@ foreach($db as $key => $value){
  define(strtoupper($key),$value);
 }
 
-
 //db 
 ?>
