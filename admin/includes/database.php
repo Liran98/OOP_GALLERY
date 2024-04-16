@@ -9,7 +9,7 @@ class Database
     {
         $this->open_db_connection();
     }
-  
+  //new comment
 
     public function open_db_connection()
     {
