@@ -1,12 +1,21 @@
 <?php
 
-$conn = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+require_once("new_config.php");
+class Database
+{
+    public $conn;
 
-if(!$conn){
-    echo "Error connecting";
-}else{
-    echo "Successfully connected";
+    function __construct()
+    {
+        $this->open_db_connection();
+    }
+  
+
+    public function open_db_connection()
+    {
+        $this->conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+       
+    }
 }
 
-
-?>
+$database = new Database();

@@ -1,15 +1,8 @@
 <?php
-
-$db['db_host'] = 'localhost:8889';
-$db['db_user'] = 'root';
-$db['db_pass'] = 'root';
-$db['db_name'] = 'photo_gallery';
-
-
-foreach($db as $key => $value){
- define(strtoupper($key),$value);
-}
-
+define("DB_HOST","localhost:8889");
+define("DB_USER","root");
+define("DB_PASS","root");
+define("DB_NAME","photo_gallery");
 
 //db 
 ?>

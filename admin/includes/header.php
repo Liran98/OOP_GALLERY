@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <?php
-include ("admin/includes/init.php");
+include("includes/init.php");
 ?>
 
 
