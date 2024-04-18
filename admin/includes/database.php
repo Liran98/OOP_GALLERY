@@ -22,7 +22,8 @@ class Database
         }
     }
 
-    public function query($sql)
+    public
+     function get_query($sql)
     {
         // $results = mysqli_query($this->conn, $sql);
         $results = $this->conn->query($sql);
