@@ -10,17 +10,23 @@
 
     // find all users has $database->query in its function
     //if its a public function then $user->find_all_users();
-    $res = User::find_all_users();
 
-    echo "all accounts found " . mysqli_num_rows($res);
-
-    echo "<br>";
+    // $res = User::find_all_users();
+    // echo "all accounts found " . mysqli_num_rows($res);
+    // echo "<br>";
 
 
 
 
     $results_user = User::find_user_by_id(3);
-    echo $results_user['id'];
+
+    $user->username = $results_user['username'];
+    $user->id = $results_user['id'];
+    $user->password = $results_user['password'];
+    $user->first_name = $results_user['first_name'];
+    $user->last_name = $results_user['last_name'];
+
+    echo $user->id;
 
 
 
