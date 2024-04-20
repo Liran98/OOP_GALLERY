@@ -49,7 +49,9 @@ class User
         // $the_object->password = $the_record['password'];
         // $the_object->first_name = $the_record['first_name'];
         // $the_object->last_name = $the_record['last_name'];
+                                
 
+        //?$the_record built like this $the_attribute ['username']. $value 
         foreach ($the_record as $the_attribute => $value) {
             if ($the_object->has_the_attribute($the_attribute)) {
                 $the_object->$the_attribute = $value;
