@@ -51,9 +51,12 @@ class User
         // $the_object->last_name = $the_record['last_name'];
 
         foreach ($the_record as $the_attribute => $value) {
+
             if ($the_object->has_the_attribute($the_attribute)) {
                 $the_object->$the_attribute = $value;
             };
+
+            
         }
         return $the_object;
     }
