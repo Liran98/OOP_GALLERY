@@ -27,9 +27,21 @@ class User
         // $found_user = mysqli_fetch_array($res_users);
         // return $found_user;
 
-        $res_users = self::find_this_query("SELECT * FROM users WHERE id = $id LIMIT 1");
-        $found_user = mysqli_fetch_array($res_users);
-        return $found_user;
+        $res_array = self::find_this_query("SELECT * FROM users WHERE id = $id LIMIT 1");
+        // $found_user = mysqli_fetch_array($res_users);
+        // return $found_user;
+
+        //?regular way 
+        // if (!empty($res_array)) {
+        //     $first_item = array_shift($res_array);
+        //     return $first_item;
+        // }else{
+        //     return false;
+        // }
+        // return $res_array;
+
+        //? ternanry operator
+        return !empty($res_array) ? array_shift($res_array) : false;
     }
 
     public static function find_this_query($sql)
@@ -40,20 +52,17 @@ class User
 
         $the_object_array = array();
 
-        while ($row = mysqli_fetch_array($result)) {
+        while ($row = mysqli_fetch_assoc($result)) {
             $the_object_array[] = self::instant($row);
         }
 
         return $the_object_array;
-
-
-
-        return $result;
     }
 
     public static function instant($the_record)
     {
-        $the_object = new self;
+        $the_object = new self;    
+                              //!$the_attribute //!$value//
         // $the_object->username = $the_record['username'];
         // $the_object->id = $the_record['id'];
         // $the_object->password = $the_record['password'];
