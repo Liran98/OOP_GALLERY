@@ -18,7 +18,7 @@
 
 
 
-    $results_user = User::find_user_by_id(3);
+    $results_user = User::find_user_by_id(1);
 
      $user = User::instant($results_user);
     // $user->username = $results_user['username'];
@@ -26,10 +26,9 @@
     // $user->password = $results_user['password'];
     // $user->first_name = $results_user['first_name'];
     // $user->last_name = $results_user['last_name'];
-    echo $user->id;
-    echo $user->username;
 
-
+    // echo $user->id;
+    // echo $user->username;
 
 
 
