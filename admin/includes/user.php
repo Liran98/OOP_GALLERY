@@ -70,10 +70,10 @@ class User
         // $the_object->last_name = $the_record['last_name'];
 
 
-        //?$the_record built like this $the_attribute ['username']. $value 
+        //?$the_record coming from the instant function built like this $the_attribute ['username']. $value 
         foreach ($the_record as $the_attribute => $value) {
-            if ($the_object->has_the_attribute($the_attribute)) {
-                $the_object->$the_attribute = $value;
+            if ($the_object->has_the_attribute($the_attribute)) { //true
+                $the_object->$the_attribute = $value; // User->$username = 'data given'
             };
         }
         return $the_object;
