@@ -2,7 +2,7 @@
 
 class User
 {
-
+    // theres attributes has to be the same names coming from the database
     public $id;
     public $username;
     public $password;
@@ -59,22 +59,26 @@ class User
         return $the_object_array;
     }
 
-    public static function instant($the_record)
+    public static function instant($row)
     {
-        $the_object = new self;    
+        $the_object = new self; //! $the_object = class User    
                               //!$the_attribute //!$value//
-        // $the_object->username = $the_record['username'];
-        // $the_object->id = $the_record['id'];
-        // $the_object->password = $the_record['password'];
-        // $the_object->first_name = $the_record['first_name'];
-        // $the_object->last_name = $the_record['last_name'];
+        // $the_object->username = $row['username'];
+        // $the_object->id = $row['id'];
+        // $the_object->password = $row['password'];
+        // $the_object->first_name = $row['first_name'];
+        // $the_object->last_name = $row['last_name'];
 
 
-        //?$the_record coming from the instant function built like this $the_attribute ['username']. $value 
-        foreach ($the_record as $the_attribute => $value) {
+        //?$row coming from the instant function built like this $the_attribute ['username']. $value 
+        foreach ($row as $the_attribute => $value) {
             if ($the_object->has_the_attribute($the_attribute)) { //true
                 $the_object->$the_attribute = $value; // User->$username = 'data given'
-            };
+
+                // echo $the_attribute." <br> ";
+            }else{
+                echo "(attr doesnt exist)";
+            }
         }
         return $the_object;
     }
@@ -89,6 +93,27 @@ class User
 }
 
 $user = new User();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
