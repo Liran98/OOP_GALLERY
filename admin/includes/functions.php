@@ -21,3 +21,11 @@ function classAutoloader($class)
     }
 }
 spl_autoload_register('classAutoloader');
+
+
+
+function relocate($redirect){
+
+return header("Location : " . strtolower($redirect) . '.php');
+}
+

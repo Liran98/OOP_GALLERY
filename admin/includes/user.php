@@ -31,15 +31,6 @@ class User
         // $found_user = mysqli_fetch_array($res_users);
         // return $found_user;
 
-        //?regular way 
-        // if (!empty($res_array)) {
-        //     $first_item = array_shift($res_array);
-        //     return $first_item;
-        // }else{
-        //     return false;
-        // }
-        // return $res_array;
-
         //? ternanry operator       array_pop() last value
         return !empty($res_array) ? array_shift($res_array) : false;
     }
@@ -58,6 +49,29 @@ class User
 
         return $the_object_array;
     }
+
+
+
+public static function verify_user($user,$pass){
+global $database;
+
+$user = $database->escape_string($user);
+$pass = $database->escape_string($pass);
+
+
+$sql = "SELECT * FROM users WHERE ";
+$sql .= "username = '$user' ";
+$sql .= "AND password = '$pass' ";
+$sql .= "LIMIT 1";
+
+$res_array = self::find_this_query($sql);
+
+return !empty($res_array) ? array_shift($res_array) : false;
+
+}
+
+
+
 
     public static function instant($row)
     {

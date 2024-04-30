@@ -4,7 +4,12 @@
 require_once("includes/init.php");
 ?>
 
+<?php
 
+if(!$session->is_signed_in()) relocate("LOGIN");
+
+
+?>
 
 
 
