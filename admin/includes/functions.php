@@ -26,6 +26,6 @@ spl_autoload_register('classAutoloader');
 
 function relocate($redirect){
 
-return header("Location : " . strtolower($redirect) . '.php');
+return header("Location :" .strtolower($redirect). '.php');
 }
 
