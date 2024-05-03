@@ -1,7 +1,7 @@
-<?php ob_start(); ?>
+<?php //ob_start(); ?>
 
 <?php
-require_once("includes/init.php");
+require_once("init.php");
 ?>
 
 <!DOCTYPE html>

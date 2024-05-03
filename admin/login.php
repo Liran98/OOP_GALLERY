@@ -1,10 +1,10 @@
 <?php
 require_once("includes/header.php");
+?>
 
-
-
+<?php
 if($session->is_signed_in()){
-    relocate("INDEX");
+    redirect("index");
 }
 
 if(isset($_POST['submit'])){
@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
     
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-   $password =  password_hash($password , PASSWORD_BCRYPT ,array('cost'=> 12));
+//    $password =  password_hash($password , PASSWORD_BCRYPT ,array('cost'=> 12));
 
 
 //method
@@ -22,7 +22,7 @@ $user_found = User::verify_user($username,$password);
 if($user_found){
 
     $session->login($user_found);
-    relocate("INDEX");
+    redirect("index");
 
 }
 

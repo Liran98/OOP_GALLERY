@@ -24,8 +24,8 @@ spl_autoload_register('classAutoloader');
 
 
 
-function relocate($redirect){
+function redirect($path){
 
-return header("Location :" .strtolower($redirect). '.php');
+return header("Location: " .$path.".php");
 }
 

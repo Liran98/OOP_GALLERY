@@ -23,7 +23,7 @@
                         <a href="#">Contact</a>
                     </li>
                     <li>
-                        <a href="admin">Admin</a>
+                        <a href="#">Admin</a>
                     </li>
                 </ul>
             </div>

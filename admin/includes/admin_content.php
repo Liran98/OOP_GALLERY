@@ -12,9 +12,9 @@
     //if its a public function then $user->find_all_users();
 
     // $res = User::find_all_users();
-   
+
     // echo "data below:" . "<br>";
-   
+
 
     // while($row = mysqli_fetch_array($res)){
     //   $user = $row['username'];
@@ -37,15 +37,16 @@
 
 
 
-    // $user = User::find_all_users();
-    // foreach($user as $users){
-    //     echo $users->username . "<br>";
-    // }
+    $user = User::find_all_users();
+    foreach($user as $users){
+        echo $users->username . "<br>";
+    }
 
 
 
-    $uid = User::find_user_by_id(1);
-    echo $uid->username;
+    // $uid = User::find_user_by_id(1);
+    // echo $uid->username;
+
 
     ?>
 
