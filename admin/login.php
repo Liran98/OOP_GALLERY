@@ -3,33 +3,33 @@ require_once("includes/header.php");
 ?>
 
 <?php
-if($session->is_signed_in()){
+if ($session->is_signed_in()) {
     redirect("index");
 }
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-    
+
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-//    $password =  password_hash($password , PASSWORD_BCRYPT ,array('cost'=> 12));
+    //    $password =  password_hash($password , PASSWORD_BCRYPT ,array('cost'=> 12));
 
 
-//method
+    //method
 
-$user_found = User::verify_user($username,$password);
+    $user_found = User::verify_user($username, $password);
 
-if($user_found){
+    if ($user_found) {
 
-    $session->login($user_found);
-    redirect("index");
-
-}
-
-}else{
-$username = null;
-$password = null;
-
+        $session->login($user_found);
+        redirect("index");
+    } else {
+        $the_message = "your pass or user are incorrect";
+    }
+} else {
+    $the_message = "";
+    $username = "";
+    $password = "";
 }
 
 ?>
@@ -38,32 +38,32 @@ $password = null;
 
 <div class="col-md-4 col-md-offset-3">
 
-<!-- <h4 class="bg-danger">
+    <h4 class="bg-danger">
+        <?php echo $the_message; ?>
+    </h4>
 
-</h4> -->
-	
-<form id="login-id" action="" method="post">
-	
-<div class="form-group">
-	<label for="username">Username</label>
-	<input type="text" class="form-control" name="username" >
+    <form id="login-id" action="" method="post">
 
-</div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" value="<?php echo htmlentities($username); ?>">
 
-<div class="form-group">
-	<label for="password">Password</label>
-	<input type="password" class="form-control" name="password" >
-	
-</div>
+        </div>
 
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" value="<?php echo htmlentities($password); ?>">
 
-<div class="form-group">
-<input type="submit" name="submit" value="Submit" class="btn btn-primary">
-
-</div>
+        </div>
 
 
-</form>
+        <div class="form-group">
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+
+        </div>
+
+
+    </form>
 
 
 </div>
