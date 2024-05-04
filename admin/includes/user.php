@@ -35,6 +35,7 @@ class User
         return !empty($res_array) ? array_shift($res_array) : false;
     }
 
+    //gets the passing query from the function and loops through the rows depends on whats given
     public static function find_this_query($sql)
     {
         global $database;
@@ -49,7 +50,6 @@ class User
 
         return $the_object_array;
     }
-
 
 
 public static function verify_user($user,$pass){
@@ -71,8 +71,6 @@ return !empty($res_array) ? array_shift($res_array) : false;
 }
 
 
-
-
     public static function instant($row)
     {
         $the_object = new self; //! $the_object = class User    
@@ -86,7 +84,9 @@ return !empty($res_array) ? array_shift($res_array) : false;
 
         //?$row coming from the instant function built like this $the_attribute ['username']. $value 
         foreach ($row as $the_attribute => $value) {
+            //if the attribute exists in the object assign the attribute to the value
             if ($the_object->has_the_attribute($the_attribute)) { //true
+                
                 $the_object->$the_attribute = $value; // User->$username = 'data given'
 
                 // echo $the_attribute." <br> ";
@@ -100,8 +100,10 @@ return !empty($res_array) ? array_shift($res_array) : false;
 
     private function has_the_attribute($the_attribute)
     {
+        //get all attributes from the object
         $object_properties = get_object_vars($this);
 
+        //checks if the attribute coming from instant exists in the object
         return array_key_exists($the_attribute, $object_properties);
     }
 }
