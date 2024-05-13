@@ -26,8 +26,16 @@
 // $user->username = "wwf";
 // $user->update();
 
-// $user = User::find_user_by_id(10);
+
 // $user->delete();
+
+// $user = User::find_user_by_id(7);
+// $user->username = "WHATEVER";
+// $user->save();
+
+$user = new User();
+$user->username = "james bond";
+$user->save();
 
 ?>
 
