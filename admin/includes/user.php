@@ -59,7 +59,7 @@ class User
     {
         global $database;
 
-public static function verify_user($user,$pass){
+
 global $database;
 
 $user = $database->escape_string($user);
