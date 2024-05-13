@@ -1,53 +1,12 @@
 <div class="container-fluid">
 
     <?php
-    //     $res = $database->query("SELECT * FROM users WHERE id = 1");
+   
 
-    //    while ($row = mysqli_fetch_assoc($res)){
-    //     echo $row['id'] . "<br>";
-    //    }
-
-
-    // find all users has $database->query in its function
-    //if its a public function then $user->find_all_users();
-
-    // $res = User::find_all_users();
-
-    // echo "data below:" . "<br>";
-
-
-    // while($row = mysqli_fetch_array($res)){
-    //   $user = $row['username'];
-    // };
-
-
-
-
-    // $results_user = User::find_user_by_id(1);
-    // $user = User::instant($results_user);
-
-    // $user->username = $results_user['username'];
-    // $user->id = $results_user['id'];
-    // $user->password = $results_user['password'];
-    // $user->first_name = $results_user['first_name'];
-    // $user->last_name = $results_user['last_name'];
-
-    // echo $user->id;
-    // echo $user->username;
-
-
-
-    $user = User::find_all_users();
-    foreach($user as $users){
-        echo $users->username . "<br>";
-    }
-
-
-
-    // $uid = User::find_user_by_id(1);
-    // echo $uid->username;
-
-
+    // $user = User::find_all_users();
+    // foreach($user as $users){
+    //     echo $users->username . "<br>";
+    // }
     ?>
 
     <div class="row">
@@ -56,9 +15,21 @@
                 ADMIN
                 <small>Subheading</small>
             </h1>
+<?php
+// $user->username = "example";
+// $user->password = "12333";
+// $user->first_name = "e";
+// $user->last_name = "z";
+// $user->create();
 
+// $user = User::find_user_by_id(7);
+// $user->username = "wwf";
+// $user->update();
 
+// $user = User::find_user_by_id(10);
+// $user->delete();
 
+?>
 
             <ol class="breadcrumb">
                 <li>
