@@ -52,6 +52,12 @@ class User
     }
 
 
+
+
+    public static function verify_user($user, $pass)
+    {
+        global $database;
+
 public static function verify_user($user,$pass){
 global $database;
 
@@ -59,22 +65,25 @@ $user = $database->escape_string($user);
 $pass = $database->escape_string($pass);
 
 
-$sql = "SELECT * FROM users WHERE ";
-$sql .= "username = '$user' ";
-$sql .= "AND password = '$pass' ";
-$sql .= "LIMIT 1";
+        $user = $database->escape_string($user);
+        $pass = $database->escape_string($pass);
 
-$res_array = self::find_this_query($sql);
 
-return !empty($res_array) ? array_shift($res_array) : false;
+        $sql = "SELECT * FROM users WHERE ";
+        $sql .= "username = '$user' ";
+        $sql .= "AND password = '$pass' ";
+        $sql .= "LIMIT 1";
 
-}
+        $res_array = self::find_this_query($sql);
+
+        return !empty($res_array) ? array_shift($res_array) : false;
+    }
 
 
     public static function instant($row)
     {
         $the_object = new self; //! $the_object = class User    
-                              //!$the_attribute //!$value//
+        //!$the_attribute //!$value//
         // $the_object->username = $row['username'];
         // $the_object->id = $row['id'];
         // $the_object->password = $row['password'];
@@ -90,7 +99,7 @@ return !empty($res_array) ? array_shift($res_array) : false;
                 $the_object->$the_attribute = $value; // User->$username = 'data given'
 
                 // echo $the_attribute." <br> ";
-            }else{
+            } else {
                 echo "(attr doesnt exist)";
             }
         }
@@ -106,7 +115,46 @@ return !empty($res_array) ? array_shift($res_array) : false;
         //checks if the attribute coming from instant exists in the object
         return array_key_exists($the_attribute, $object_properties);
     }
-}
+
+    public function create()
+    {
+        global $database;
+
+        $sql = "INSERT INTO users (username,password,first_name,last_name)";
+        $sql .= " VALUES ('$this->username','$this->password','$this->first_name','$this->last_name')";
+
+        if ($database->get_query($sql)) {
+
+            $this->id = $database->the_insert_id();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function update()
+    {
+        global $database;
+
+        $sql = "UPDATE users SET username ='$this->username',password='$this->password',first_name='$this->first_name',last_name='$this->last_name' ";
+        $sql .= "WHERE id = '$this->id'";
+        $database->get_query($sql);
+
+        return (mysqli_affected_rows($database->conn) == 1) ? true : false;
+    }
+
+
+    public function delete()
+    {
+        global $database;
+
+        $sql = "DELETE FROM users WHERE id = $this->id";
+        $sql .= " LIMIT 1";
+        $database->get_query($sql);
+
+        return (mysqli_affected_rows($database->conn) == 1) ? true : false;
+    }
+} //end of user class
 
 $user = new User();
 
