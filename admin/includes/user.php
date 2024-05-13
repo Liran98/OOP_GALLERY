@@ -8,6 +8,7 @@ class User
     public $password;
     public $first_name;
     public $last_name;
+    protected static $db_table = "users";
 
 
 
@@ -17,7 +18,7 @@ class User
         // $result_set = $database->get_query("SELECT * FROM users");
         // return $result_set;
 
-        return self::find_this_query("SELECT * FROM users");
+        return self::find_this_query("SELECT * FROM " . self::$db_table ."");
     }
 
     public static function find_user_by_id($id)
@@ -27,7 +28,7 @@ class User
         // $found_user = mysqli_fetch_array($res_users);
         // return $found_user;
 
-        $res_array = self::find_this_query("SELECT * FROM users WHERE id = $id LIMIT 1");
+        $res_array = self::find_this_query("SELECT * FROM " . self::$db_table ." WHERE id = $id LIMIT 1");
         // $found_user = mysqli_fetch_array($res_users);
         // return $found_user;
 
@@ -69,7 +70,7 @@ $pass = $database->escape_string($pass);
         $pass = $database->escape_string($pass);
 
 
-        $sql = "SELECT * FROM users WHERE ";
+        $sql = "SELECT * FROM " . self::$db_table ." WHERE ";
         $sql .= "username = '$user' ";
         $sql .= "AND password = '$pass' ";
         $sql .= "LIMIT 1";
@@ -116,11 +117,21 @@ $pass = $database->escape_string($pass);
         return array_key_exists($the_attribute, $object_properties);
     }
 
+
+
+    public function save()
+    {
+        return isset($this->id) ? $this->update() : $this->create();
+    }
+
+
+
+
     public function create()
     {
         global $database;
 
-        $sql = "INSERT INTO users (username,password,first_name,last_name)";
+        $sql = "INSERT INTO ". self::$db_table ." (username,password,first_name,last_name)";
         $sql .= " VALUES ('$this->username','$this->password','$this->first_name','$this->last_name')";
 
         if ($database->get_query($sql)) {
@@ -136,7 +147,7 @@ $pass = $database->escape_string($pass);
     {
         global $database;
 
-        $sql = "UPDATE users SET username ='$this->username',password='$this->password',first_name='$this->first_name',last_name='$this->last_name' ";
+        $sql = "UPDATE " . self::$db_table ." SET username ='$this->username',password='$this->password',first_name='$this->first_name',last_name='$this->last_name' ";
         $sql .= "WHERE id = '$this->id'";
         $database->get_query($sql);
 
@@ -148,7 +159,7 @@ $pass = $database->escape_string($pass);
     {
         global $database;
 
-        $sql = "DELETE FROM users WHERE id = $this->id";
+        $sql = "DELETE FROM " . self::$db_table ." WHERE id = $this->id";
         $sql .= " LIMIT 1";
         $database->get_query($sql);
 
