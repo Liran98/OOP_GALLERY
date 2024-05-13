@@ -221,6 +221,7 @@ $user = new User();
 
 //   6. Finally it returns the object!
 
+ //7. testing
 
 
 // The purpose of this is to basically create our own API to deal with the database query so that in the future we can plug in other API's. Now there still a couple things I want to improve to make this way better, cleaner and more universal. 
