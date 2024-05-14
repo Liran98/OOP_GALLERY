@@ -18,7 +18,7 @@ class User
         // $result_set = $database->get_query("SELECT * FROM users");
         // return $result_set;
 
-        return self::find_this_query("SELECT * FROM " . self::$db_table ."");
+        return self::find_this_query("SELECT * FROM " . self::$db_table . "");
     }
 
     public static function find_user_by_id($id)
@@ -28,7 +28,7 @@ class User
         // $found_user = mysqli_fetch_array($res_users);
         // return $found_user;
 
-        $res_array = self::find_this_query("SELECT * FROM " . self::$db_table ." WHERE id = $id LIMIT 1");
+        $res_array = self::find_this_query("SELECT * FROM " . self::$db_table . " WHERE id = $id LIMIT 1");
         // $found_user = mysqli_fetch_array($res_users);
         // return $found_user;
 
@@ -60,17 +60,17 @@ class User
         global $database;
 
 
-global $database;
+        global $database;
 
-$user = $database->escape_string($user);
-$pass = $database->escape_string($pass);
+        $user = $database->escape_string($user);
+        $pass = $database->escape_string($pass);
 
 
         $user = $database->escape_string($user);
         $pass = $database->escape_string($pass);
 
 
-        $sql = "SELECT * FROM " . self::$db_table ." WHERE ";
+        $sql = "SELECT * FROM " . self::$db_table . " WHERE ";
         $sql .= "username = '$user' ";
         $sql .= "AND password = '$pass' ";
         $sql .= "LIMIT 1";
@@ -96,7 +96,7 @@ $pass = $database->escape_string($pass);
         foreach ($row as $the_attribute => $value) {
             //if the attribute exists in the object assign the attribute to the value
             if ($the_object->has_the_attribute($the_attribute)) { //true
-                
+
                 $the_object->$the_attribute = $value; // User->$username = 'data given'
 
                 // echo $the_attribute." <br> ";
@@ -112,12 +112,14 @@ $pass = $database->escape_string($pass);
     {
         //get all attributes from the object
         $object_properties = get_object_vars($this);
-
         //checks if the attribute coming from instant exists in the object
         return array_key_exists($the_attribute, $object_properties);
     }
 
-
+    protected function properties()
+    {
+        return get_object_vars($this);
+    }
 
     public function save()
     {
@@ -131,8 +133,10 @@ $pass = $database->escape_string($pass);
     {
         global $database;
 
-        $sql = "INSERT INTO ". self::$db_table ." (username,password,first_name,last_name)";
-        $sql .= " VALUES ('$this->username','$this->password','$this->first_name','$this->last_name')";
+        $properties = $this->properties();
+
+        $sql = "INSERT INTO " . self::$db_table . "(" . implode(",",array_keys($properties)) . ")";
+        $sql .= " VALUES ('".implode("','",array_values($properties))."')";
 
         if ($database->get_query($sql)) {
 
@@ -147,7 +151,7 @@ $pass = $database->escape_string($pass);
     {
         global $database;
 
-        $sql = "UPDATE " . self::$db_table ." SET username ='$this->username',password='$this->password',first_name='$this->first_name',last_name='$this->last_name' ";
+        $sql = "UPDATE " . self::$db_table . " SET username ='$this->username',password='$this->password',first_name='$this->first_name',last_name='$this->last_name' ";
         $sql .= "WHERE id = '$this->id'";
         $database->get_query($sql);
 
@@ -159,7 +163,7 @@ $pass = $database->escape_string($pass);
     {
         global $database;
 
-        $sql = "DELETE FROM " . self::$db_table ." WHERE id = $this->id";
+        $sql = "DELETE FROM " . self::$db_table . " WHERE id = $this->id";
         $sql .= " LIMIT 1";
         $database->get_query($sql);
 
