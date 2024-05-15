@@ -8,7 +8,11 @@ class User
     public $password;
     public $first_name;
     public $last_name;
+
     protected static $db_table = "users";
+    protected static $db_table_fields = array('username', 'password', 'first_name', 'last_name');
+
+
 
 
 
@@ -86,11 +90,6 @@ class User
         $the_object = new self; //! $the_object = class User    
         //!$the_attribute //!$value//
         // $the_object->username = $row['username'];
-        // $the_object->id = $row['id'];
-        // $the_object->password = $row['password'];
-        // $the_object->first_name = $row['first_name'];
-        // $the_object->last_name = $row['last_name'];
-
 
         //?$row coming from the instant function built like this $the_attribute ['username']. $value 
         foreach ($row as $the_attribute => $value) {
@@ -118,7 +117,30 @@ class User
 
     protected function properties()
     {
-        return get_object_vars($this);
+        $properties = array();
+        // return get_object_vars($this);
+
+        foreach (self::$db_table_fields as $db_field) {
+
+            if (property_exists($this, $db_field)) {
+                $properties[$db_field] = $this->$db_field;
+            }
+        }
+
+        return $properties;
+    }
+
+
+//escaping strings 
+    protected function clean_properties(){
+        global $database;
+
+        $clean_props = array();
+
+        foreach ($this->properties() as $key => $value) {
+           $clean_props[$key]= $database->escape_string($value);
+        }
+        return $clean_props;
     }
 
     public function save()
@@ -126,17 +148,14 @@ class User
         return isset($this->id) ? $this->update() : $this->create();
     }
 
-
-
-
     public function create()
     {
         global $database;
 
         $properties = $this->properties();
 
-        $sql = "INSERT INTO " . self::$db_table . "(" . implode(",",array_keys($properties)) . ")";
-        $sql .= " VALUES ('".implode("','",array_values($properties))."')";
+        $sql = "INSERT INTO " . self::$db_table . "(" . implode(",", array_keys($properties)) . ")";
+        $sql .= " VALUES ('" . implode("','", array_values($properties)) . "')";
 
         if ($database->get_query($sql)) {
 
@@ -151,8 +170,18 @@ class User
     {
         global $database;
 
-        $sql = "UPDATE " . self::$db_table . " SET username ='$this->username',password='$this->password',first_name='$this->first_name',last_name='$this->last_name' ";
-        $sql .= "WHERE id = '$this->id'";
+        $properties = $this->properties();
+
+        $properties_pairs = array();
+
+        foreach ($properties as $key => $value) {
+            $properties_pairs[] = "{$key}='{$value}'";
+        }
+
+        $sql = "UPDATE " . self::$db_table . " SET ";
+        $sql .= implode(",", $properties_pairs);
+        $sql .= " WHERE id = '$this->id'";
+
         $database->get_query($sql);
 
         return (mysqli_affected_rows($database->conn) == 1) ? true : false;
