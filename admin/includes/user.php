@@ -64,15 +64,8 @@ class User
         global $database;
 
 
-        global $database;
-
         $user = $database->escape_string($user);
         $pass = $database->escape_string($pass);
-
-
-        $user = $database->escape_string($user);
-        $pass = $database->escape_string($pass);
-
 
         $sql = "SELECT * FROM " . self::$db_table . " WHERE ";
         $sql .= "username = '$user' ";
