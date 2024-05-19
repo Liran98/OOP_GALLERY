@@ -1,3 +1,6 @@
+
+
+
 <div class="container-fluid">
 
     <?php
@@ -29,15 +32,19 @@
 // $user = User::find_user_by_id(16);
 // $user->delete();
 
-$user = User::find_user_by_id(7);
-$user->username = "WHATEVER jr";
-$user->first_name = "jr jr";
-$user->save();
+// $user = User::find_by_id(7);
+// $user->username = "WHATEVER jr";
+// $user->first_name = "jr jr";
+// $user->save();
 
 // $user = new User();
 // $user->username = "james bond";
 // $user->save();
 
+$users = User::find_all();
+foreach ($users as $user){
+    echo $user->username ."<br>";
+}
 ?>
 
             <ol class="breadcrumb">
