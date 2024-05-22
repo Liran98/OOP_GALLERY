@@ -46,6 +46,15 @@ class Db_object {
      return $the_object_array;
  }
 
+
+ private function has_the_attribute($the_attribute)
+ {
+     //get all attributes from the object
+     $object_properties = get_object_vars($this);
+     //checks if the attribute coming from instant exists in the object
+     return array_key_exists($the_attribute, $object_properties);
+ }
+ 
  public static function instant($row)
  {
     $calling_class = get_called_class();
@@ -71,13 +80,7 @@ class Db_object {
      return $the_object;
  }
 
- private function has_the_attribute($the_attribute)
- {
-     //get all attributes from the object
-     $object_properties = get_object_vars($this);
-     //checks if the attribute coming from instant exists in the object
-     return array_key_exists($the_attribute, $object_properties);
- }
+
 
 
  public function save()

@@ -11,8 +11,9 @@ class Photo extends Db_object
     public $filename;
     public $type;
     public $size;
-    // "C:\MAMP\htdocs\sec3_gallery\gallery"
+    // "C:\MAMP\htdocs\sec3_gallery"
     public $tmp_path;
+
     public $upload_directory = "images";
 
     public $custom_errors = array();
@@ -55,4 +56,39 @@ class Photo extends Db_object
             $this->size = $file['size'];
         }
     }
-}
+
+
+    public function save()
+    {
+        if ($this->photo_id) {
+            $this->update();
+        } else {
+
+
+            if (!empty($this->custom_errors)) {
+                return false;
+            }
+
+            if (empty($this->filename) || empty($this->tmp_path)) {
+                $this->custom_errors[] = "the file was not available";
+                return false;
+            }
+
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->filename;
+
+            if (file_exists($target_path)) {
+                $this->custom_errors[] = "the file {$this->filename} already exists";
+                return false;
+            }
+
+            if (move_uploaded_file($this->tmp_path, $target_path)) {
+                if ($this->create()) {
+                    unset($this->tmp_path);
+                    return true;
+                }
+            }
+
+            $this->create();
+        }
+    }
+}//end of photo class
