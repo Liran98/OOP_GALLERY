@@ -86,9 +86,12 @@ class Photo extends Db_object
                     unset($this->tmp_path);
                     return true;
                 }
+            } else {
+                $this->custom_errors[] = "the file directory probably doesnt have permission ";
+                return false;
             }
 
-            $this->create();
+            // $this->create();
         }
     }
 }//end of photo class
