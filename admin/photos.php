@@ -1,5 +1,5 @@
 <?php include("includes/header.php"); ?>
-<?php if(!$session->is_signed_in()) redirect("login");?>
+<?php if (!$session->is_signed_in()) redirect("login"); ?>
 
 <?php
 
@@ -40,16 +40,23 @@ $photos = Photo::find_all();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($photos as $photo) : ?>
-                        <tr>
-                            <td><img style="width: 50px;" src="<?php echo $photo->picture_path(); ?>" alt=""></td>
-                            <td><?php echo $photo->photo_id; ?></td>
-                            <td><?php echo $photo->title; ?></td>
-                            <td><?php echo $photo->description; ?></td>
-                            <td><?php echo $photo->filename; ?></td>
-                            <td><?php echo $photo->type; ?></td>
-                            <td><?php echo $photo->size; ?></td>
-                        </tr>
+                        <?php foreach ($photos as $photo) : ?>
+                            <tr>
+                                <td><img style="width: 50px;" src="<?php echo $photo->picture_path(); ?>" alt="">
+
+                                    <div class="pictures_link">
+                                        <a href="delete_photo.php?del=<?php echo $photo->photo_id;?>">Delete</a>
+                                        <a href="">Edit</a>
+                                        <a href="">View</a>
+                                    </div>
+                                </td>
+                                <td><?php echo $photo->photo_id; ?></td>
+                                <td><?php echo $photo->title; ?></td>
+                                <td><?php echo $photo->description; ?></td>
+                                <td><?php echo $photo->filename; ?></td>
+                                <td><?php echo $photo->type; ?></td>
+                                <td><?php echo $photo->size; ?></td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

@@ -98,4 +98,10 @@ class Photo extends Db_object
             $this->create();
         }
     }
+
+
+    public function delete_pic($id){
+        global $database;
+    return $database->get_query("DELETE FROM ". self::$db_table ." WHERE photo_id = $id");
+    }
 }//end of photo class
