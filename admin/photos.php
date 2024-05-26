@@ -1,6 +1,12 @@
 <?php include("includes/header.php"); ?>
 <?php if(!$session->is_signed_in()) redirect("login");?>
 
+<?php
+
+$photos = Photo::find_all();
+
+
+?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -26,21 +32,25 @@
                         <tr>
                             <th>Photo</th>
                             <th>Id</th>
-                            <th>File Name</th>
                             <th>Title</th>
-                            <th>Size</th>
+                            <th>Description</th>
+                            <th>File Name</th>
                             <th>Type</th>
+                            <th>Size</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach($photos as $photo) : ?>
                         <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
+                            <td><img style="width: 50px;" src="<?php echo $photo->picture_path(); ?>" alt=""></td>
+                            <td><?php echo $photo->photo_id; ?></td>
+                            <td><?php echo $photo->title; ?></td>
+                            <td><?php echo $photo->description; ?></td>
+                            <td><?php echo $photo->filename; ?></td>
+                            <td><?php echo $photo->type; ?></td>
+                            <td><?php echo $photo->size; ?></td>
                         </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
                 <!-- end of table -->
