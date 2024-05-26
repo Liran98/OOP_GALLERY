@@ -2,9 +2,6 @@
 
 class Photo extends Db_object
 {
-    protected static $db_table = "photos";
-    protected static $db_table_fields = array('photo_id', 'title', 'description', 'filename', 'type', 'size');
-
     public $photo_id;
     public $title;
     public $description;
@@ -17,6 +14,9 @@ class Photo extends Db_object
     public $upload_directory = "images";
 
     public $custom_errors = array();
+    
+    protected static $db_table = "photos";
+    protected static $db_table_fields = array('photo_id', 'title', 'description', 'filename', 'type', 'size');
 
     public $upload_errors_array = array(
 
@@ -91,7 +91,8 @@ class Photo extends Db_object
                 return false;
             }
 
-            // $this->create();
+            $this->create();
         }
     }
+
 }//end of photo class

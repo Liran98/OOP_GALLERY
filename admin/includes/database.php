@@ -18,7 +18,7 @@ class Database
 
         //same as mysqli_errno($this->conn);
         if($this->conn->connect_errno){
-            die($this->conn->connect_error);
+            die("database connection failed " . $this->conn->connect_error);
         }
     }
 
@@ -35,7 +35,7 @@ class Database
     private function confirm_query($result)
     {
         if (!$result) {
-            die(mysqli_error($this->conn->error));
+            die("query failed " . mysqli_error($this->conn->error));
         }
     }
 

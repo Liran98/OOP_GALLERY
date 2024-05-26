@@ -6,7 +6,7 @@
                                          // if alreay defined then its null else we create a new constant
 defined('DS') ? null : define('DS',DIRECTORY_SEPARATOR);
      
-defined('SITE_ROOT') ? null : define('SITE_ROOT',DS."C:\MAMP\htdocs\sec3_gallery");
+defined('SITE_ROOT') ? null : define('SITE_ROOT',DS."MAMP\htdocs\sec3_gallery");
 
 defined('INCLUDES_PATH') ? null : define('INCLUDES_PATH', SITE_ROOT.DS.'admin'.DS.'includes');
 

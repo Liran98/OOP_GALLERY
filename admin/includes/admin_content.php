@@ -1,16 +1,4 @@
-
-
-
 <div class="container-fluid">
-
-    <?php
-   
-
-    // $user = User::find_all_users();
-    // foreach($user as $users){
-    //     echo $users->username . "<br>";
-    // }
-    ?>
 
     <div class="row">
         <div class="col-lg-12">
@@ -18,34 +6,52 @@
                 ADMIN
                 <small>Subheading</small>
             </h1>
-<?php
-// $user->username = "example";
-// $user->password = "12333";
-// $user->first_name = "e";
-// $user->last_name = "z";
-// $user->create();
+            <?php
+            // $user->username = "example";
+            // $user->password = "12333";
+            // $user->first_name = "e";
+            // $user->last_name = "z";
+            // $user->create();
 
-// $user = User::find_user_by_id(7);
-// $user->username = "wwf";
-// $user->update();
+            // $user = User::find_user_by_id(7);
+            // $user->username = "wwf";
+            // $user->update();
 
-// $user = User::find_user_by_id(16);
-// $user->delete();
+            // $user = User::find_user_by_id(16);
+            // $user->delete();
 
-// $user = User::find_by_id(7);
-// $user->username = "WHATEVER jr";
-// $user->first_name = "jr jr";
-// $user->save();
+            // $user = User::find_by_id(7);
+            // $user->username = "WHATEVER jr";
+            // $user->first_name = "jr jr";
+            // $user->save();
 
-// $user = new User();
-// $user->username = "james bond";
-// $user->save();
+            // $user = new User();
+            // $user->username = "james bond";
+            // $user->save();
 
-$users = User::find_all();
-foreach ($users as $user){
-    echo $user->username ."<br>";
-}
-?>
+            // $users = User::find_all();
+            // foreach ($users as $user){
+            //     echo $user->username ."<br>";
+            // }
+
+
+            // $photo = new Photo();
+            // $photo->photo_id = 11;
+            // $photo->title = "example";
+            // $photo->description = "12333";
+            // $photo->filename = "photo.jpg";
+            // $photo->type = "photo";
+            // $photo->size = 100;
+            // $photo->create();
+
+
+            $photo = Photo::find_all();
+            foreach ($photo as $pic) {
+                echo $pic->title . "<br>";
+            }
+
+            
+            ?>
 
             <ol class="breadcrumb">
                 <li>
