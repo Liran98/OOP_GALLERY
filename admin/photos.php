@@ -46,7 +46,7 @@ $photos = Photo::find_all();
 
                                     <div class="pictures_link">
                                         <a href="delete_photo.php?del=<?php echo $photo->photo_id;?>">Delete</a>
-                                        <a href="">Edit</a>
+                                        <a href="edit_photo.php?edit=<?php echo $photo->photo_id;?>">Edit</a>
                                         <a href="">View</a>
                                     </div>
                                 </td>

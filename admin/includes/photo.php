@@ -8,6 +8,9 @@ class Photo extends Db_object
     public $filename;
     public $type;
     public $size;
+    public $caption;
+    public $alternate_text;
+
     // "C:\MAMP\htdocs\sec3_gallery"
     public $tmp_path;
 
@@ -100,8 +103,39 @@ class Photo extends Db_object
     }
 
 
-    public function delete_pic($id){
+    public function delete_pic($id)
+    {
         global $database;
-    return $database->get_query("DELETE FROM ". self::$db_table ." WHERE photo_id = $id");
+
+        if ($database->get_query("DELETE FROM " . self::$db_table . " WHERE photo_id = $id")) {
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->picture_path();
+
+            return unlink($target_path) ? true : false;
+        } else {
+            return false;
+        }
+
+      
+    }
+
+    public function pic_update($id)
+    {
+        global $database;
+
+        $properties = $this->properties();
+
+        $properties_pairs = array();
+
+        foreach ($properties as $key => $value) {
+            $properties_pairs[] = "{$key}='{$value}'";
+        }
+
+        $sql = "UPDATE " . static::$db_table . " SET ";
+        $sql .= implode(",", $properties_pairs);
+        $sql .= " WHERE photo_id = $id";
+
+        $database->get_query($sql);
+
+        return (mysqli_affected_rows($database->conn) == 1) ? true : false;
     }
 }//end of photo class

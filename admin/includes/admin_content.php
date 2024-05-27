@@ -45,12 +45,18 @@
             // $photo->create();
 
 
-            $photo = Photo::find_all();
-            foreach ($photo as $pic) {
-                echo $pic->title . "<br>";
-            }
+            // $photo = Photo::find_all();
+            // foreach ($photo as $pic) {
+            //     echo $pic->title . "<br>";
+            // }
 
-            
+            // if ($user = User::find_by_id("id", 10)) {
+            //     $user->delete();
+            //     echo $user->username . " : " . "deleted successfully";
+            // } else {
+            //     echo "User not found";
+            // }
+
             ?>
 
             <ol class="breadcrumb">

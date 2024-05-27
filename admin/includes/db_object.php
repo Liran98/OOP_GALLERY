@@ -9,11 +9,10 @@ class Db_object
 
         return static::find_by_query("SELECT * FROM " . static::$db_table . "");
     }
-
-    public static function find_by_id($id)
+ //! or photo_id or id as a parameter $column , $id comes from the $_GET or hardcoded
+    public static function find_by_id($column,$id)
     {
-
-        $res_array = static::find_by_query("SELECT * FROM " . static::$db_table . " WHERE id = $id LIMIT 1");
+        $res_array = static::find_by_query("SELECT * FROM " . static::$db_table . " WHERE $column = $id LIMIT 1");
         //? ternanry operator       array_pop() last value
         return !empty($res_array) ? array_shift($res_array) : false;
     }
