@@ -36,7 +36,7 @@
 
 
             // $photo = new Photo();
-            // $photo->photo_id = 11;
+            // $photo->id = 11;
             // $photo->title = "example";
             // $photo->description = "12333";
             // $photo->filename = "photo.jpg";

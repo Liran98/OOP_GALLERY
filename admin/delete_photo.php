@@ -11,10 +11,10 @@ if (empty($_GET['del'])) {
 
 
 
- $photos = Photo::find_by_id("photo_id", $_GET['del']);
-// not needed cause photo class has a delete method that gets the photo_id
+ $photos = Photo::find_by_id($_GET['del']);
+// not needed cause photo class has a delete method that gets the id
 if ($photos) {
-    $photos->delete_pic($_GET['del']);
+    $photos->delete_photo();
     redirect("photos");
 } else {
     redirect("photos");

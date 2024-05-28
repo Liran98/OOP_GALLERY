@@ -6,15 +6,19 @@
 if (empty($_GET['edit'])) {
     redirect("photos");
 } else {
-    $photo = Photo::find_by_id("photo_id", $_GET['edit']);
+    $photo = Photo::find_by_id($_GET['edit']);
 
-    if (isset($_POST['update'])) {
+    if (isset($_POST['Update'])) {
         if ($photo) {
 
             $photo->title = $_POST['title'];
             $photo->caption = $_POST['caption'];
-            $photo->alterante_text = $_POST['alternate_text'];
+            $photo->alternate_text = $_POST['alternate_text'];
             $photo->description = $_POST['description'];
+
+           $photo->save();
+                echo "photo updated successfully";
+            
         }
     }
 }
@@ -42,23 +46,27 @@ if (empty($_GET['edit'])) {
                 PHOTOS
                 <small>Subheading</small>
             </h1>
-            <form action="edit_photo.php" method="post" enctype="multipart/form-data">
+            <form action="" method="post">
                 <div class="col-md-8">
                     <div class="form-group">
                         <label for="title">Title:</label>
-                        <input type="text" name="title" class="form-control" value="<?php echo $photo->title; ?>" ">
+                        <input type="text" name="title" class="form-control" value="<?php echo $photo->title; ?>" >
                     </div>
+                    <div class="form-group">
+                        <a class="thumbnail" href=""><img src="<?php echo $photo->picture_path();?>" alt=""></a>
+                    </div>
+
                     <div class=" form-group">
                         <label for="caption">Caption:</label>
-                        <input type="text" name="caption" class="form-control" value="<?php echo $photo->caption; ?>" ">
+                        <input type="text" name="caption" class="form-control" value="<?php echo $photo->caption; ?>">
                     </div>
                     <div class=" form-group">
-                        <label for="alternatetext">Alternate text:</label>
-                        <input type="text" name="alternate_text" class="form-control" value="<?php echo $photo->alternate_text; ?>" ">
+                        <label for="alternate_text">Alternate text:</label>
+                        <input type="text" name="alternate_text" class="form-control" value="<?php echo $photo->alternate_text; ?>">
                     </div>
                     <div class=" form-group">
                         <label for="Description">Description:</label>
-                        <textarea name="description" id="summernote" cols="30" rows="10">
+                        <textarea id="summernote" name="description"  cols="30" rows="10">
                         <?php echo $photo->description; ?>
                     </textarea>
                     </div>
@@ -77,7 +85,7 @@ if (empty($_GET['edit'])) {
                                     <span class="glyphicon glyphicon-calendar"></span> <?php echo date("d/m/y") ." " .date("h:i"); ?>
                                 </p>
                                 <p class="text ">
-                                    Photo Id: <span class="data photo_id_box"><?php echo $photo->photo_id; ?></span>
+                                    Photo Id: <span class="data id_box"><?php echo $photo->id; ?></span>
                                 </p>
                                 <p class="text">
                                     File Name: <span class="data"><?php echo $photo->filename; ?></span>
@@ -91,10 +99,10 @@ if (empty($_GET['edit'])) {
                             </div>
                             <div class="info-box-footer clearfix">
                                 <div class="info-box-delete pull-left">
-                                    <a href="delete_photo.php?id=<?php echo $photo->id; ?>" class="btn btn-danger btn-lg ">Delete</a>
+                                    <a href="delete_photo.php?del=<?php echo $photo->id; ?>" class="btn btn-danger btn-lg ">Delete</a>
                                 </div>
                                 <div class="info-box-update pull-right ">
-                                    <input type="submit" name="update" value="Update" class="btn btn-primary btn-lg ">
+                                    <input type="submit" name="Update" value="Update" class="btn btn-primary btn-lg ">
                                 </div>
                             </div>
                         </div>

@@ -16,7 +16,6 @@ require_once("init.php");
     <meta name="author" content="">
 
     <title>SB Admin - Bootstrap Admin Template</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -33,6 +32,13 @@ require_once("init.php");
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
+
+
+    <link rel="stylesheet" href="css/styles.css">
+
+  
 </head>
 
 <body>

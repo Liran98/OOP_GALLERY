@@ -42,15 +42,15 @@ $photos = Photo::find_all();
                     <tbody>
                         <?php foreach ($photos as $photo) : ?>
                             <tr>
-                                <td><img style="width: 50px;" src="<?php echo $photo->picture_path(); ?>" alt="">
+                                <td><img class="admin-photo-thumbnail"  src="<?php echo $photo->picture_path(); ?>" alt="">
 
                                     <div class="pictures_link">
-                                        <a href="delete_photo.php?del=<?php echo $photo->photo_id;?>">Delete</a>
-                                        <a href="edit_photo.php?edit=<?php echo $photo->photo_id;?>">Edit</a>
+                                        <a href="delete_photo.php?del=<?php echo $photo->id;?>">Delete</a>
+                                        <a href="edit_photo.php?edit=<?php echo $photo->id;?>">Edit</a>
                                         <a href="">View</a>
                                     </div>
                                 </td>
-                                <td><?php echo $photo->photo_id; ?></td>
+                                <td><?php echo $photo->id; ?></td>
                                 <td><?php echo $photo->title; ?></td>
                                 <td><?php echo $photo->description; ?></td>
                                 <td><?php echo $photo->filename; ?></td>
