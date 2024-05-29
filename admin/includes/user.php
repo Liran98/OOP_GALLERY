@@ -9,9 +9,62 @@ class User extends Db_object
     public $first_name;
     public $last_name;
 
-    protected static $db_table = "users";
-    protected static $db_table_fields = array('username', 'password', 'first_name', 'last_name');
+    public $user_image;
+    public $tmp_path;
+    public $type;
+    public $size;
 
+    public $upload_directory = "images";
+    public $image_placeholder = "https://placehold.co/64x64.png";
+
+
+    protected static $db_table = "users";
+    protected static $db_table_fields = array('username', 'password', 'first_name', 'last_name', 'user_image');
+
+
+ 
+
+    public function upload_photo()
+    {
+        // if ($this->id) {
+        //     $this->update();
+        // } else {
+
+
+            if (!empty($this->custom_errors)) {
+                return false;
+            }
+
+            if (empty($this->user_image) || empty($this->tmp_path)) {
+                $this->custom_errors[] = "the file was not available";
+                return false;
+            }
+
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->user_image;
+
+            if (file_exists($target_path)) {
+                $this->custom_errors[] = "the file {$this->user_image} already exists";
+                return false;
+            }
+
+            if (move_uploaded_file($this->tmp_path, $target_path)) {
+                // if ($this->create()) {
+                    unset($this->tmp_path);
+                    return true;
+                // }
+            } else {
+                $this->custom_errors[] = "the file directory probably doesnt have permission ";
+                return false;
+            }
+
+            // $this->create();
+        // }
+    }
+
+    public function image_path_and_placeholder()
+    {
+        return empty($this->user_image) ? $this->image_placeholder : $this->upload_directory . DS . $this->user_image;
+    }
 
     public static function verify_user($user, $pass)
     {
@@ -28,19 +81,18 @@ class User extends Db_object
 
         $res_array = self::find_by_query($sql);
 
-        return !empty($res_array) ? array_shift($res_array) : false;
+        
+            return !empty($res_array) ? array_shift($res_array) : false;
     }
-   
 
+    public function delete_photo_user(){
+        if($this->delete()){
+            $target_path = SITE_ROOT.DS."admin".DS . $this->upload_directory . DS . $this->user_image;
+            return unlink($target_path);
+        }
+    }
 
-
-
-   
-
-
-  
-  
-   
+ 
 } //end of user class
 
 $user = new User();

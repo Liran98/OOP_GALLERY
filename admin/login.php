@@ -12,7 +12,6 @@ if (isset($_POST['submit'])) {
 
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-    //    $password =  password_hash($password , PASSWORD_BCRYPT ,array('cost'=> 12));
 
 
     //method
