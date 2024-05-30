@@ -56,7 +56,6 @@
             // } else {
             //     echo "User not found";
             // }
-
             ?>
 
             <ol class="breadcrumb">

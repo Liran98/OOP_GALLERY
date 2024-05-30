@@ -3,9 +3,11 @@
 
 <?php
 
-$comments = Comment::find_all();
+if(empty($_GET['photo_id'])){
+    redirect("photos");
+}
 
-
+$comment = Comment::find_the_comments($_GET['photo_id']);
 ?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -30,9 +32,7 @@ $comments = Comment::find_all();
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>ACTIONS</th>
                             <th>COMMENT_ID</th>
-                            <th>PHOTO_ID</th>
                             <th>AUTHOR</th>
                             <th>BODY</th>
                         </tr>
@@ -48,7 +48,6 @@ $comments = Comment::find_all();
                                     </div>
                                 </td>
                                 <td><?php echo $comment->id; ?></td>
-                                <td><?php echo $comment->photo_id; ?></td>
                                 <td><?php echo $comment->author; ?></td>
                                 <td><?php echo $comment->body; ?></td>
                             </tr>

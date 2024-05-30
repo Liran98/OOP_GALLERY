@@ -112,3 +112,5 @@ class Photo extends Db_object
 
 
 }//end of photo class
+
+$photo = new Photo();
