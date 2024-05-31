@@ -9,7 +9,7 @@ class Db_object
 
         return static::find_by_query("SELECT * FROM " . static::$db_table . "");
     }
- //! or id or id as a parameter $column , $id comes from the $_GET or hardcoded
+    //! or id or id as a parameter $column , $id comes from the $_GET or hardcoded
     public static function find_by_id($id)
     {
         $res_array = static::find_by_query("SELECT * FROM " . static::$db_table . " WHERE id = $id LIMIT 1");
@@ -161,7 +161,7 @@ class Db_object
 
 
 
-   
+
 
 
 
@@ -181,5 +181,19 @@ class Db_object
             // $this->size = $file['size'];
 
         }
+    }
+
+
+    public static function count_all()
+    {
+        global $database;
+
+        $sql = "SELECT COUNT(*) FROM " . static::$db_table;
+
+        $result_set =  $database->get_query($sql);
+
+        $row = mysqli_fetch_array($result_set);
+
+        return array_shift($row);
     }
 } //end of class
