@@ -1,3 +1,7 @@
+<!-- //!FRONT END -->
+
+
+
 <?php include("includes/header.php"); ?>
 <?php
 
@@ -13,7 +17,7 @@ if (empty($_GET['photo_id'])) {
 
 $photo = Photo::find_by_id($_GET['photo_id']);
 
-echo $photo->title;
+// echo $photo->title;
 
 if (isset($_POST['add_comment'])) {
 
@@ -106,7 +110,10 @@ if (isset($_POST['add_comment'])) {
 
             <!-- Comments Form -->
 
-
+<img class="img-thumbnail" src="<?php 
+ $img = "admin" . DS .$photo->picture_path();
+ echo $img;
+ ?>">
 
             <div class="well">
                 <h4>Leave a Comment:</h4>

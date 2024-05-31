@@ -44,7 +44,7 @@ $comments = Comment::find_all();
                                     <div>
                                         <a href="delete_comment.php?del=<?php echo $comment->id;?>">Delete</a>
                                         <a href="edit_comment.php?edit_id=<?php echo $comment->id;?>">Edit</a>
-                                        <a href="../comment.php?comment_id=<?php echo $comment->id;?>">View</a>
+                                        <a href="../photo.php?photo_id=<?php echo $comment->photo_id; ?>">View</a>
                                     </div>
                                 </td>
                                 <td><?php echo $comment->id; ?></td>

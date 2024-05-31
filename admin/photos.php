@@ -59,11 +59,12 @@ $photos = Photo::find_all();
                                 <td><?php echo $photo->type; ?></td>
                                 <td><?php echo $photo->size; ?></td>
                                 <td>
+                                <a href="photo_comment.php?photo_id=<?php echo $photo->id; ?>">
                                     <?php
                                     $comment = Comment::find_the_comments($photo->id);
                                     echo count($comment);
-
                                     ?>
+                                     </a>
                                 </td>
 
                             </tr>

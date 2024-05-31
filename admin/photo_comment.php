@@ -3,11 +3,11 @@
 
 <?php
 
-if(empty($_GET['photo_id'])){
+if (empty($_GET['photo_id'])) {
     redirect("photos");
 }
 
-$comment = Comment::find_the_comments($_GET['photo_id']);
+$comments = Comment::find_the_comments($_GET['photo_id']);
 ?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -25,13 +25,14 @@ $comment = Comment::find_the_comments($_GET['photo_id']);
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                COMMENTS
+                COMMENTS :
                 <small>Subheading</small>
             </h1>
             <div class="cold-md-12">
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
+                            <th>ACTIONS</th>
                             <th>COMMENT_ID</th>
                             <th>AUTHOR</th>
                             <th>BODY</th>
@@ -42,9 +43,8 @@ $comment = Comment::find_the_comments($_GET['photo_id']);
                             <tr>
                                 <td>
                                     <div>
-                                        <a href="delete_comment.php?del=<?php echo $comment->id;?>">Delete</a>
-                                        <a href="edit_comment.php?edit_id=<?php echo $comment->id;?>">Edit</a>
-                                        <a href="../comment.php?comment_id=<?php echo $comment->id;?>">View</a>
+                                        <a href="delete_comment_photos.php?comment_id=<?php echo $comment->id; ?>">Delete</a>
+
                                     </div>
                                 </td>
                                 <td><?php echo $comment->id; ?></td>
