@@ -1,30 +1,45 @@
 <?php include("includes/header.php"); ?>
 
+<?php
+$photos = Photo::find_all();
+?>
+<div class="row">
 
-        <div class="row">
+  <!-- Blog Entries Column -->
+  <div class="col-md-12">
+    <?php
+    foreach ($photos as $photo) {
+    ?>
 
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
-
-    
-            
-          hello world
-         
-
-            </div>
-
-
-
-
-            <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-4">
-
-            
-                 <?php include("includes/sidebar.php"); ?>
+<div class="thumbnails row">
+  <div class="col-xs-6 col-md-3">
+    <a class="thumbnail" href="">
+      <img src="admin/<?php echo $photo->picture_path(); ?>" alt="">
+    </a>
+  </div>
+</div>
 
 
 
-        </div>
-        <!-- /.row -->
+    <?php
+    }
+    ?>
+  </div>
+</div>
 
-        <?php include("includes/footer.php"); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php include("includes/footer.php"); ?>

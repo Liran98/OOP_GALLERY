@@ -106,8 +106,6 @@ if (isset($_POST['add_comment'])) {
 
 
 
-
-
             <!-- Comment -->
             <?php
             $comment = Comment::find_the_comments($_GET['photo_id']);
