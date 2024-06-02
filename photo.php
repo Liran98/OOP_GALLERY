@@ -1,21 +1,15 @@
-<!-- //!FRONT END -->
-
-
-
 <?php include("includes/header.php"); ?>
+
 <?php
-
-
-require_once("admin/includes/init.php");
-require_once(INCLUDES_PATH . DS . "photo.php");
 
 $message = "";
 
-if (empty($_GET['photo_id'])) {
-    redirect("index");
+
+
+if (isset($_GET['photo_id'])) {
+    $photo = Photo::find_by_id($_GET['photo_id']);
 }
 
-$photo = Photo::find_by_id($_GET['photo_id']);
 
 // echo $photo->title;
 
@@ -28,7 +22,8 @@ if (isset($_POST['add_comment'])) {
     $new_comment = Comment::create_comment($photo->id, $author, $body);
 
     if ($new_comment &&   $new_comment->save()) {
-        redirect("photo") . "?photo_id=" . $photo->id;
+        redirect("photo");
+        //  . "?photo_id=" . $photo->id;
     } else {
         $message = "There was some problem saving the comment";
     }
@@ -40,7 +35,6 @@ if (isset($_POST['add_comment'])) {
 
 ?>
 
-<?php include("includes/navigation.php"); ?>
 
 <!-- Page Content -->
 <div class="container">
@@ -48,12 +42,12 @@ if (isset($_POST['add_comment'])) {
     <div class="row">
 
         <!-- Blog Post Content Column -->
-        <div class="col-lg-8">
+        <div class="col-lg-12 row">
 
             <!-- Blog Post -->
 
             <!-- Title -->
-            <h1>Blog Post Title</h1>
+            <h1><?php echo $photo->title; ?></h1>
 
             <!-- Author -->
             <p class="lead">
@@ -68,23 +62,24 @@ if (isset($_POST['add_comment'])) {
             <hr>
 
             <!-- Preview Image -->
-            <img class="img-responsive" src="<?php  ?>" alt="">
+            <img class="img-responsive" src="admin/<?php echo $photo->picture_path();  ?>" alt="">
 
             <hr>
 
             <!-- Post Content -->
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
-
+            <p class="lead">
+                <?php echo $photo->caption; ?>
+            </p>
+            <p>
+                <?php echo $photo->description; ?>
+            </p>
             <hr>
 
             <!-- Blog Comments -->
 
             <!-- Comments Form -->
 
-            <img class="img-thumbnail" src="<?php
-                                            $img = "admin" . DS . $photo->picture_path();
-                                            echo $img;
-                                            ?>">
+            <img class="img-thumbnail" src="<?php  "admin" . DS . $photo->picture_path();?>">
 
             <div class="well">
                 <h4>Leave a Comment:</h4>
@@ -108,34 +103,29 @@ if (isset($_POST['add_comment'])) {
 
             <!-- Comment -->
             <?php
-            $comment = Comment::find_the_comments($_GET['photo_id']);
-            foreach ($comment as $comments) {
+           $comment = Comment::find_the_comments($_GET['photo_id']);
+          
+
+                foreach ($comment as $comments) {
             ?>
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            <h2><small>👤</small><?php echo $comments->author; ?></h2>
-                            <big>📅<?php echo date("d-m-y"); ?>📅</big>
-                        </h4>
-                        <h4>🗨️: <?php echo $comments->body; ?></h4>
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="http://placehold.it/64x64" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <h2><small>👤</small><?php echo $comments->author; ?></h2>
+                                <big>📅<?php echo date("d-m-y"); ?>📅</big>
+                            </h4>
+                            <h4>🗨️: <?php echo $comments->body; ?></h4>
+                        </div>
                     </div>
-                </div>
-                <hr>
+                    <hr>
             <?php
-            }
+                }
             ?>
 
         </div>
-
-
-        <!-- Blog Sidebar Widgets Column -->
-        <div class="col-md-4">
-            <?php include("includes/sidebar.php"); ?>
-        </div>
-        <!-- /.row -->
 
 
         <?php include("includes/footer.php"); ?>
