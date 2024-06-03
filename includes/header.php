@@ -13,7 +13,7 @@
     <meta name="author" content="">
 
     <title>Blog Home - Start Bootstrap Template</title>
-
+    <link rel="stylesheet" href="css/style.css">
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -26,7 +26,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
@@ -36,6 +36,6 @@
     <!-- Page Content -->
  
 <?php 
-echo basename($_SERVER['PHP_SELF']);
+//echo basename($_SERVER['PHP_SELF']);
 ?>
 <div class="container">

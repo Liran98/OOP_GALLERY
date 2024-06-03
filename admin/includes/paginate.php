@@ -1,6 +1,6 @@
 <?php
 
-class Pagiante
+class Paginate
 {
 
     public $current_page;

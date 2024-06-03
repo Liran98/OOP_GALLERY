@@ -5,12 +5,17 @@ $photos = Photo::find_all();
 
 $page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$items_per_page = 4;
+$items_per_page = 2;
 
 $items_total_count = Photo::count_all();
 
+$paginate = new Paginate($page,$items_per_page,$items_total_count);
+                                      // ($this->current_page - 1) * $this->item_per_page;    if cur page is 2 - 1 = 1 , 1 * 4 = 4
+$sql = "SELECT * FROM photos LIMIT {$items_per_page} OFFSET {$paginate->offset()}";
 
+$photos = Photo::find_by_query($sql);
 
+$total_pages =  $paginate->page_total();
 ?>
 <div class="row">
   <!-- Blog Entries Column -->
@@ -28,6 +33,44 @@ $items_total_count = Photo::count_all();
       endforeach;
       ?>
     </div>
+
+
+<div class="row">
+  <ul class="pagination">
+    <?php
+    
+    if($paginate->page_total() > 1){
+      
+      
+    if($paginate->has_next()){
+
+      echo "<li class='next'><a href='index.php?page={$paginate->next()}'>Next</a></li>";
+    }
+  }
+ 
+  ?>
+
+<?php
+
+
+for($i = 1; $i <= $total_pages; $i++){
+  if($paginate->current_page == $i){
+    echo "<li class='active'><a href='index.php?page={$i}'>$i</a></li>";
+  }else{
+    echo "<li><a href='index.php?page={$i}'>$i</a></li>";
+
+  }
+}
+if($paginate->has_previous()){
+  echo "<li class='next'><a href='index.php?page={$paginate->previous()}'>Previous</a></li>";
+}
+?>
+   
+  </ul>
+</div>
+
+
+
   </div>
 </div>
 

@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="">
                                 <div class="panel-footer">
                                      <div>Page View from Gallery</div>
                                   <span class="pull-left">View Details</span> 
@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="photos.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">Total Photos in Gallery</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="users.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">Total Users</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -113,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="comments.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">Total Comments</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
