@@ -97,7 +97,7 @@ class User extends Db_object
     {
         $this->user_image = $user_image;
         $this->id = $user_id;
-        $this->save_user_and_image();
+        $this->save();
     }
 } //end of user class
 

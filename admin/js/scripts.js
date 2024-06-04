@@ -17,11 +17,11 @@ $(document).ready(function () {
 
     user_href = $("#user_id").prop('href');
     user_href_splitted = user_href.split('=');
+    console.log(user_href_splitted);
     user_id = user_href_splitted[user_href_splitted.length - 1];
-
+    console.log(user_id);
     // console.log(user_href);
     // console.log(user_href_splitted);
-   alert(user_id);
 
     image_src = $(this).prop("src");
     image_href_splitted = image_src.split('/');
@@ -48,8 +48,6 @@ $(document).ready(function () {
       type: "POST",
       success: function (data) {
         if (!data.error) {
-          alert(data);
-
           location.reload(true);
         }
       }
