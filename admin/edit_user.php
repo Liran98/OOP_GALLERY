@@ -1,4 +1,5 @@
 <?php include("includes/header.php"); ?>
+<?php include("includes/photo_library_modal.php"); ?>
 <?php if (!$session->is_signed_in()) redirect("login"); ?>
 
 <?php
@@ -10,10 +11,10 @@ if (empty($_GET['edit'])) {
 
 $user = User::find_by_id($_GET['edit']);
 
-if(isset($_POST['delete'])){
-    $user->delete_photo_user();
-    redirect("users");
-}
+// if(isset($_POST['delete'])){
+//     $user->delete_photo_user();
+//     redirect("users");
+// }
 
 if (isset($_POST['update'])) {
     if ($user) {
@@ -60,7 +61,8 @@ if (isset($_POST['update'])) {
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <a class="rounded" href=""><img class="img-responsive" src="<?php echo $user->image_path_and_placeholder(); ?>" alt=""></a>
+                        <a data-toggle="modal" data-target="#photo-library" class="rounded" href="#">
+                            <img class="img-responsive" src="<?php echo $user->image_path_and_placeholder(); ?>" alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -85,12 +87,14 @@ if (isset($_POST['update'])) {
                     <div class=" form-group">
                         <label for="user image">user image</label>
                         <input type="file" name="user_image">
+                        <img src="<?php $user->image_path_and_placeholder();?>" alt="">
                     </div>
                     <div class=" form-group">
                         <input type="submit" value="update" name="update" class="btn btn-primary">
                     </div>
                     <div class=" form-group">
-                        <input type="submit" value="delete" name="delete" class="btn btn-danger">
+                        <a id="user_id"  class="btn btn-danger"  href="delete_user.php?del=<?php echo $user->id; ?>">Delete</a>
+                        <!-- <input id="user-id" type="submit" value="delete" name="delete" class="btn btn-danger"> -->
                     </div>
             </form>
         </div>
@@ -102,5 +106,6 @@ if (isset($_POST['update'])) {
 
 </div>
 <!-- /#page-wrapper -->
+
 
 <?php include("includes/footer.php"); ?>

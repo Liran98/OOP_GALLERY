@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
         $user->set_file($_FILES['user_image']);
 
-        $user->upload_photo();
+        $user->save_user_and_image();
 
         $user->save();
     }
