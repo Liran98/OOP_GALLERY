@@ -11,28 +11,36 @@ $(document).ready(function () {
   let image_href_splitted;
   let image_name;
 
+  let photo_id;
+
   $(".modal_thumbnails").click(function () {
 
     $("#set_user_image").prop('disabled', false);
 
     user_href = $("#user_id").prop('href');
     user_href_splitted = user_href.split('=');
-    console.log(user_href_splitted);
     user_id = user_href_splitted[user_href_splitted.length - 1];
-    console.log(user_id);
-    // console.log(user_href);
-    // console.log(user_href_splitted);
+  
 
     image_src = $(this).prop("src");
     image_href_splitted = image_src.split('/');
     image_name = image_href_splitted[image_href_splitted.length - 1];
 
-    // alert(image_name);
-    // console.log(image_src);
-    // console.log(image_href_splitted);
-    // console.log(image_name);
-    // alert(image_name);
 
+    photo_id = $(this).attr("data");
+
+    $.ajax({
+      url: "includes/ajax_code.php",
+      data: {
+        picid: photo_id,
+      },
+      type: "POST",
+      success: function (data) {
+        if (!data.error) {
+        $('#modal_sidebar').html(data);
+        }
+      }
+    });
   });
 
 
@@ -48,7 +56,9 @@ $(document).ready(function () {
       type: "POST",
       success: function (data) {
         if (!data.error) {
-          location.reload(true);
+          // location.reload(true);
+
+          $(".user_image_box a img").prop("src" , data);
         }
       }
     });

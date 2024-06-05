@@ -10,7 +10,7 @@ class Photo extends Db_object
     public $size;
     public $caption;
     public $alternate_text;
-	
+
     // "C:\MAMP\htdocs\sec3_gallery"
     public $tmp_path;
 
@@ -19,7 +19,7 @@ class Photo extends Db_object
     public $custom_errors = array();
 
     protected static $db_table = "photos";
-    protected static $db_table_fields = array('title', 'description', 'filename', 'type', 'size','caption','alternate_text');
+    protected static $db_table_fields = array('title', 'description', 'filename', 'type', 'size', 'caption', 'alternate_text');
 
     public $upload_errors_array = array(
 
@@ -57,7 +57,6 @@ class Photo extends Db_object
             $this->tmp_path = $file['tmp_name'];
             $this->type = $file['type'];
             $this->size = $file['size'];
-         
         }
     }
 
@@ -103,14 +102,28 @@ class Photo extends Db_object
         }
     }
 
-    public function delete_photo(){
-        if($this->delete()){
-            $target_path = SITE_ROOT.DS."admin".DS . $this->upload_directory . DS . $this->filename;
+    public function delete_photo()
+    {
+        if ($this->delete()) {
+            $target_path = SITE_ROOT . DS . "admin" . DS . $this->upload_directory . DS . $this->filename;
             return unlink($target_path);
         }
     }
 
 
-}//end of photo class
+
+    public static function display_sidebar_data($photo_id)
+    {
+        $photo = Photo::find_by_id($photo_id);
+
+        $output = "<a class='thumbnail' href='#'>";
+        $output .= "<img width='100' src='{$photo->picture_path()}'></a>";
+        $output .= "<p>{$photo->filename}</p>";
+        $output .= "<p>{$photo->type}</p>";
+        $output .= "<p>{$photo->size}</p>";
+
+        echo $output;
+    }
+} //end of photo class
 
 $photo = new Photo();

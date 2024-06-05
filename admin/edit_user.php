@@ -59,7 +59,7 @@ if (isset($_POST['update'])) {
                 <small>Subheading</small>
             </h1>
             <form action="" method="post" enctype="multipart/form-data">
-                <div class="col-md-4">
+                <div class="col-md-4 user_image_box">
                     <div class="form-group">
                         <a data-toggle="modal" data-target="#photo-library" class="rounded" href="#">
                             <img class="img-responsive" src="<?php echo $user->image_path_and_placeholder(); ?>" alt=""></a>
