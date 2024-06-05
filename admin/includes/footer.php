@@ -5,12 +5,14 @@
     <script  src="js/jquery.js"></script>
 <!-- //! never name the script file (script) other wise it wont work. scripts work  -->
     <script src="js/scripts.js"></script>
+
+ 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-  
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     
     <script  type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>

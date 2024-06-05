@@ -26,10 +26,15 @@ $photos = Photo::find_all();
                 PHOTOS
                 <small>Subheading</small>
             </h1>
+            <p class="bg-success">
+                <?php echo $message; ?>
+            </p>
+            <form action="photos.php" method="post" enctype="multipart/form-data">
             <div class="cold-md-12">
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
+                            <th>Actions <input name="all_pics[]" class="checkboxes" type="checkbox"></th>
                             <th>Photo</th>
                             <th>Id</th>
                             <th>Title</th>
@@ -44,6 +49,7 @@ $photos = Photo::find_all();
                     <tbody>
                         <?php foreach ($photos as $photo) : ?>
                             <tr>
+                            <td><input  type="checkbox" class="check_per_image" name="the_pics"></td>
                                 <td><img class="admin-photo-thumbnail" src="<?php echo $photo->picture_path(); ?>" alt="">
 
                                     <div class="actions_link">
@@ -52,6 +58,7 @@ $photos = Photo::find_all();
                                         <a href="../photo.php?photo_id=<?php echo $photo->id; ?>">View</a>
                                     </div>
                                 </td>
+                                
                                 <td><?php echo $photo->id; ?></td>
                                 <td><?php echo $photo->title; ?></td>
                                 <td><?php echo $photo->description; ?></td>
@@ -73,6 +80,7 @@ $photos = Photo::find_all();
                 </table>
                 <!-- end of table -->
             </div>
+            </form>
         </div>
     </div>
     <!-- /.row -->

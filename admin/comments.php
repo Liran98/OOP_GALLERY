@@ -26,6 +26,9 @@ $comments = Comment::find_all();
                 COMMENTS
                 <small>Subheading</small>
             </h1>
+            <p class="bg-success">
+                <?php echo $message; ?>
+            </p>
             <div class="cold-md-12">
                 <table class="table table-hover table-bordered">
                     <thead>

@@ -25,13 +25,21 @@ if (isset($_POST['update'])) {
 
 
         if (empty($_FILES['user_image'])) {
+            $session->message("The user has been updated");
             $user->save();
+            redirect("users");
+          
+
         } else {
             $user->set_file($_FILES['user_image']);
             $user->save_user_and_image();
             $user->save();
 
-            redirect("edit_user") . "?edit=$user->id";
+            // redirect("edit_user") . "?edit=$user->id";
+            redirect("users");
+
+
+
         }
     }
 }

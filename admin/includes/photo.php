@@ -122,7 +122,7 @@ class Photo extends Db_object
         $output .= "<p>{$photo->type}</p>";
         $output .= "<p>{$photo->size}</p>";
 
-        echo $output;
+        return $output;
     }
 } //end of photo class
 

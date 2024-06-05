@@ -30,8 +30,10 @@ if (isset($_POST['submit'])) {
         $user->set_file($_FILES['user_image']);
 
         $user->save_user_and_image();
-
+        $session->message("user added successfully");
         $user->save();
+
+        redirect("users");
     }
 }
 

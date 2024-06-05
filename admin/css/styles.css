@@ -90,3 +90,11 @@
   
   }
   
+
+  .dropzone{
+    border: 6px dashed #0087F7 !important;
+   border-radius: 5px;
+   background: white;
+   margin-top: 30px;
+
+  }

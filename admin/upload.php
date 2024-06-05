@@ -3,11 +3,11 @@
 
 <?php
 $message = "";
-if (isset($_POST['submit'])) {
+if (isset($_FILES['file'])) {
 
     $photo = new Photo();
     $photo->title = $_POST['title'];
-    $photo->set_file($_FILES['file_upload']);
+    $photo->set_file($_FILES['file']);
 
     if ($photo->save()) {
         $message = "photo uploaded successfully";
@@ -48,6 +48,7 @@ if (isset($_POST['submit'])) {
                 <small>Subheading</small>
             </h1>
 
+            <div class="row">
             <div class="col-md-6">
                 <?php
                 
@@ -56,16 +57,25 @@ if (isset($_POST['submit'])) {
                 ?>
                 <form action="upload.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
+                        <label for="title">Title:</label>
                         <input type="text" name="title" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="file" name="file_upload">
+                        <input class="hidden" type="file" name="file">
                     </div>
-                    <input type="submit" name="submit" class="btn btn-primary">
+                    <input class="hidden" type="submit" name="submit" class="btn btn-primary">
                 </form>
 
 
-
+            </div>
+        </div>
+        </div> 
+        <!-- end of row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="upload.php" class='dropzone'>
+                    
+                </form>
             </div>
         </div>
     </div>
@@ -75,6 +85,8 @@ if (isset($_POST['submit'])) {
 
 
 </div>
+
+
 
 <!-- /#page-wrapper -->
 
