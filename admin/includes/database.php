@@ -4,10 +4,11 @@ require_once("new_config.php");
 class Database
 {
     public $conn;
+    public $db;
 
     function __construct()
     {
-        $this->open_db_connection();
+       $this->db =  $this->open_db_connection();
     }
     //new comment
 
@@ -20,13 +21,16 @@ class Database
         if($this->conn->connect_errno){
             die("database connection failed " . $this->conn->connect_error);
         }
+
+        return $this->conn;
     }
 
     public
      function get_query($sql)
     {
         // $results = mysqli_query($this->conn, $sql);
-        $results = $this->conn->query($sql);
+        // $results = $this->conn->query($sql);
+        $results = $this->db->query($sql);
 
         $this->confirm_query($results);
         return $results;

@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
         <?php echo $the_message; ?>
     </h4>
 
-    <form id="login-id" action="" method="post">
+    <form  id="login-id" action="" method="post">
 
         <div class="form-group">
             <label for="username">Username</label>

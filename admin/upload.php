@@ -6,6 +6,7 @@ $message = "";
 if (isset($_FILES['file'])) {
 
     $photo = new Photo();
+    // $photo->user_id = $_SESSION['user_id'];
     $photo->title = $_POST['title'];
     $photo->set_file($_FILES['file']);
 
@@ -63,7 +64,7 @@ if (isset($_FILES['file'])) {
                     <div class="form-group">
                         <input class="hidden" type="file" name="file">
                     </div>
-                    <input class="hidden" type="submit" name="submit" class="btn btn-primary">
+                    <input type="submit" name="submit" class="btn btn-primary">
                 </form>
 
 

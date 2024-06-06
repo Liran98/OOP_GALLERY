@@ -65,20 +65,52 @@ $(document).ready(function () {
   });
 
 
+
+  // edit photo sidebar
+
+  $('.info-box-header').click(function () {
+
+
+    $('.inside').slideToggle("fast");
+
+    $('#toggle').toggleClass('glyphicon-menu-down glyphicon ', ' glyphicon-menu-up glyphicon');
+
+  });
+
+
+
+
+  // delete event photos.php
+
+
+  $(".delete_link").click(function () {
+
+    return confirm("are you sure you want to delete ?");
+  });
+
+
+
+
+
+
+
+}); // end of document ready
+
+
+const all_check_boxes = document.querySelector('.checkboxes');
+const check_per_image = document.querySelectorAll('.check_per_image');
+
+const del_btn = document.querySelector('.del-btn');
+
+all_check_boxes.addEventListener('click', function (e) {
+  if (this.checked) {
+    this.checked = true;
+    del_btn.classList.remove('hidden');
+
+  } else {
+    this.checked = false;
+    del_btn.classList.add('hidden');
+
+
+  }
 });
-
-const actions = document.querySelector('.checkboxes');
-const all_imgs = document.querySelector('.check_per_img');
-
-actions.addEventListener('click', function (e) {
-
-
-  all_imgs.forEach(function(btn){
-    btn.addEventListener('click', function (e) {
-      console.log("clicked");
-    });
-  })
-
-
-});
-

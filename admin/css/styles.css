@@ -49,10 +49,10 @@
 .admin-photo-thumbnail {
   width: 200px;
   border-radius: 20%;
- border: 3px solid rgb(0, 27, 232);
+  border: 3px solid rgb(0, 27, 232);
 }
 
-.user_image{
+.user_image {
   width: 62px;
   height: 62px;
 }
@@ -60,41 +60,46 @@
 
 .modal-dialog {
   width: 90% !important;
-  
-  
-  
-  }
-  
-  .modal-body {
+
+
+
+}
+
+.modal-body {
   overflow: auto;
   height: 500px !important;
   min-height: 300px !important;
-  }
-  
-  .modal_thumbnails {
-  
-      width: 150px;
-      height: 100px !important;
-  }
-  
-  #set_user_image {
-  
-  margin:10px;
-  
-  }
-  
-  
-  #modal_sidebar {
-  
+}
+
+.modal_thumbnails {
+
+  width: 150px;
+  height: 100px !important;
+}
+
+#set_user_image {
+
+  margin: 10px;
+
+}
+
+
+#modal_sidebar {
+
   position: fixed !important;
-  
-  }
-  
 
-  .dropzone{
-    border: 6px dashed #0087F7 !important;
-   border-radius: 5px;
-   background: white;
-   margin-top: 30px;
+}
 
-  }
+
+.dropzone {
+  border: 6px dashed #0087F7 !important;
+  border-radius: 5px;
+  background: white;
+  margin-top: 30px;
+
+}
+
+#login-id label {
+  color: #fff;
+
+}

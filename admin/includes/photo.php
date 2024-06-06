@@ -10,6 +10,7 @@ class Photo extends Db_object
     public $size;
     public $caption;
     public $alternate_text;
+    // public $user_id;
 
     // "C:\MAMP\htdocs\sec3_gallery"
     public $tmp_path;
@@ -19,6 +20,7 @@ class Photo extends Db_object
     public $custom_errors = array();
 
     protected static $db_table = "photos";
+    //user_id in array 
     protected static $db_table_fields = array('title', 'description', 'filename', 'type', 'size', 'caption', 'alternate_text');
 
     public $upload_errors_array = array(

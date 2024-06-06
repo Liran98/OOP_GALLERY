@@ -114,6 +114,11 @@ class User extends Db_object
 
         echo $this->image_path_and_placeholder();
     }
+
+
+    public function photo(){
+        return Photo::find_by_query("SELECT * FROM photos WHERE user_id = " . $this->id);
+    }
 } //end of user class
 
 $user = new User();
