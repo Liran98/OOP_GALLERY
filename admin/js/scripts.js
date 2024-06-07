@@ -104,13 +104,16 @@ const del_btn = document.querySelector('.del-btn');
 
 all_check_boxes.addEventListener('click', function (e) {
   if (this.checked) {
-    this.checked = true;
+    check_per_image.forEach(function(btn){
+      btn.checked = true;
+    })
     del_btn.classList.remove('hidden');
 
   } else {
-    this.checked = false;
+    check_per_image.forEach(function(btn){
+      btn.checked = false;
+    })
     del_btn.classList.add('hidden');
-
 
   }
 });
